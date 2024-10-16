@@ -19,15 +19,15 @@ public class Main {
     public static void main(String[] args) {
         int[][] arr = {
                 {-1,8},
-                {8, 5},  // 8 is the parent of 5
-                {8, 10}, // 8 is the parent of 10
-                {5, 1},  // 5 is the parent of 1
-                {5, 7},  // 5 is the parent of 7
-                {10, 12} // 10 is the parent of 12
+                {8, 5},
+                {8, 10},
+                {5, 1},
+                {5, 7},
+                {10, 12}
         };
 
         BinaryTreeNode root = new BinaryTreeNode(arr[0][1]);
-    BinaryTreeNode res=    inOrder(arr,root,root,1,0);
+    BinaryTreeNode res=    inOrder(arr,root,root,0,0);
         printInOrder(res);
     }
 
@@ -35,30 +35,45 @@ public class Main {
 
     public static BinaryTreeNode inOrder(int[][] arr,BinaryTreeNode root,BinaryTreeNode parent,int i,int j) {
         if(root==null){
-            return parent;
+            return root;
         }
       //root
         if(arr[i+1][j]==root.data){
-            if(root.data<arr[i+1][j+1]) {
-                root.left.data = arr[i + 1][j + 1];
+            if(root.data>arr[i+1][j+1]) {
+                root.left =new BinaryTreeNode( arr[i + 1][j + 1]);
+                System.out.println( "root="+root.data+ "left= "+root.left.data);
             }
-          else {
-                root.right.data = arr[i + 1][j + 1];
+            else {
+                root.right= new BinaryTreeNode(arr[i + 1][j + 1]);
+                System.out.println("root="+root.data+"right= "+root.right.data);
             }
 
             }
+        if(arr[i+2][j]==root.data){
+            if(root.data>arr[i+2][j+1]) {
+                root.left =new BinaryTreeNode( arr[i + 2][j + 1]);
+                System.out.println( "root="+root.data+ "left= "+root.left.data);
+            }
+            else {
+                root.right= new BinaryTreeNode(arr[i + 2][j + 1]);
+                System.out.println("root="+root.data+"right= "+root.right.data);
+            }
 
+        }
 
-        inOrder(arr,root.left,parent,i+1,j) ;
-        inOrder(arr,root.right,parent,i+1,j);
-        return parent;
+     //   inOrder(arr,root,parent,i+1,j) ;
+        if(root.left!=null)
+            inOrder(arr,root.left,parent,i+1,j) ;
+        if(root.right!=null)
+            inOrder(arr,root.right,parent,i+1,j);
+        return root;
     }
 
     public static void printInOrder(BinaryTreeNode root){
 
         while(root!=null) {
             printInOrder(root.left);
-            System.out.println(root.data);
+       //   System.out.println(root.data);
             printInOrder(root.right);
         }
     }
