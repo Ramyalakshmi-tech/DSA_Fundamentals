@@ -54,11 +54,11 @@ public class Main {
     }
 
     public static void printInOrder(BinaryTreeNode root){
-        if(root==null){
-            return ;
+
+        while(root!=null) {
+            printInOrder(root.left);
+            System.out.println(root.data);
+            printInOrder(root.right);
         }
-        printInOrder(root.left);
-        System.out.println(root.data);
-        printInOrder(root.right);
     }
 }
