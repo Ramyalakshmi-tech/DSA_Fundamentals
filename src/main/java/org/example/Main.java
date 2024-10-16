@@ -18,6 +18,7 @@ class BinaryTreeNode {
 public class Main {
     public static void main(String[] args) {
         int[][] arr = {
+                {-1,8},
                 {8, 5},  // 8 is the parent of 5
                 {8, 10}, // 8 is the parent of 10
                 {5, 1},  // 5 is the parent of 1
@@ -26,7 +27,7 @@ public class Main {
         };
 
         BinaryTreeNode root = new BinaryTreeNode(arr[0][1]);
-    BinaryTreeNode res=    inOrder(arr,root,root,0,0);
+    BinaryTreeNode res=    inOrder(arr,root,root,1,0);
         printInOrder(res);
     }
 
