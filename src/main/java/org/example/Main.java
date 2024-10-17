@@ -2,7 +2,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Collections;
 
-class BinaryTreeNode {
+class   BinaryTreeNode {
     int data;
     BinaryTreeNode  left,right;
 
