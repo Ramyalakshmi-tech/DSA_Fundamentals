@@ -28,49 +28,61 @@ public class levelOrderArray {
             };
 
             TreeNode root = new TreeNode(arr[0][1]);
-            Queue<Integer> queue=new LinkedList<>();
+            Queue<TreeNode> queue=new LinkedList<>();
              TreeNode res=  Helper(arr,root,root,queue,0,0);
 
-          //  printInOrder(res);
+            printInOrder2(res);
         }
-        public static TreeNode Helper(int[][] arr,TreeNode root,TreeNode parent,Queue<Integer> queue,int i,int j){
-            queue.offer(root.data);
+        public static TreeNode Helper(int[][] arr,TreeNode root,TreeNode parent,Queue<TreeNode> queue,int i,int j){
+            queue.offer(root);
 
             while(!queue.isEmpty()){
                 int n=queue.size();
                 for(int k=0;k<n;k++) {
-                    int node = queue.poll();
-                    System.out.print(node+" ");
-                 //   root.data=node;
+                    TreeNode node = queue.poll();
+                    System.out.print(node.data+" ");
+                     root=node;
                     ArrayList<Integer> count=new ArrayList<>();
                     if(i+1<arr.length) {
-                        if (arr[i + 1][j] == node) {
-                            queue.offer(arr[i + 1][j+1]);
-                            //  root.left=new TreeNode(arr[i + 1][j+1]);
+                        if (arr[i + 1][j] == node.data) {
+                            queue.offer(new TreeNode( arr[i + 1][j+1]));
+                              root.left=new TreeNode(arr[i + 1][j+1]);
+
                             count.add(2);
-                         //   System.out.println(" root "+root.data+" left "+root.left.data);
+                           System.out.println(" root "+root.data+" left "+root.left.data);
                         }
                     }
                     if(i+2<arr.length) {
-                        if (arr[i + 2][j] == node) {
-                            queue.offer(arr[i + 2][j + 1]);
-                          //  root.right=new TreeNode(arr[i + 2][j+1]);
+                        if (arr[i + 2][j] == node.data) {
+                            queue.offer(new TreeNode( arr[i + 2][j + 1]));
+
+                           root.right=new TreeNode(arr[i + 2][j+1]);
+
                             count.add(1);
-                         //   System.out.println(" root "+root.data+" right "+root.right.data);
+                         System.out.println(" root "+root.data+" right "+root.right.data);
                         }
                     }
+
                     if(count.size()==2){
                         i=i+2;
                     }
                     if(count.size()==1){
                         i++;
                     }
-                   // System.out.println("index "+i);
+                  // System.out.println("index "+i);
                 }
             }
-
-            return root;
+System.out.println(" Parent "+parent.data);
+            System.out.println(" rootleftleft "+root.data);
+            return parent;
         }
 
-
+public static void printInOrder2(TreeNode root){
+            if(root==null){
+                return;
+            }
+            printInOrder2(root.left);
+            System.out.print(root.data+" ");
+            printInOrder2(root.right);
+}
     }
