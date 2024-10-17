@@ -57,12 +57,8 @@ public class levelOrderArray {
                           //  root.right=new TreeNode(arr[i + 2][j+1]);
                             count.add(1);
                          //   System.out.println(" root "+root.data+" right "+root.right.data);
-
                         }
                     }
-
-
-
                     if(count.size()==2){
                         i=i+2;
                     }

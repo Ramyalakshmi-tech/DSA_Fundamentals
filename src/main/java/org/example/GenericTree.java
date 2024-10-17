@@ -33,7 +33,8 @@ public class GenericTree {
         GenericTreeNode root = new GenericTreeNode(arr[0][1]);
         GenericTreeNode res = Helper(arr, root, root, -1, 0);
 
-        printInOrder(res);
+       // printInOrder(res);
+        printLevelOrder(res);
     }
 
 
@@ -67,5 +68,21 @@ public class GenericTree {
         }
         System.out.print(root.data + " ");
 
+    }
+
+    public static void printLevelOrder(GenericTreeNode root){
+        Queue<GenericTreeNode> q=new LinkedList<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            int n=q.size();
+            for(int i=0;i<n;i++){
+                GenericTreeNode node=q.poll();
+
+                System.out.print(node.data+" ");
+                for (int k = 0; k < node.child.size(); k++) {
+                   q.offer(node.child.get(k));
+                }
+            }
+        }
     }
 }
