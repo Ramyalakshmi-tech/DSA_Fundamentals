@@ -1,8 +1,9 @@
-package org.example;
+package org.example.Graph;
 
 import java.util.HashSet;
+import java.util.Objects;
 
- class GraphImplementationUsingSet {
+class GraphImplementationUsingSet {
     HashSet<Edge> edgeSet;
     public GraphImplementationUsingSet(){
         edgeSet=new HashSet<>();
@@ -16,13 +17,33 @@ import java.util.HashSet;
               this.src = src;
               this.dest = dest;
           }
+          @Override
+          public boolean equals(Object o) {
+              if (this == o) return true;
+              if (o == null || getClass() != o.getClass()) return false;
+              Edge edge = (Edge) o;
+              return src == edge.src && dest == edge.dest;
+          }
+
+          @Override
+          public int hashCode() {
+              return Objects.hash(src, dest);
+          }
+
+          @Override
+          public String toString() {
+              return "(" + src + " -> " + dest + ")";
+          }
       }
+
 public void addEdge(int src,int dest){
              edgeSet.add(new Edge(src,dest));
 }
 public void removeEdge(int src,int dest){
              edgeSet.remove(new Edge(src,dest));
 }
+
+
 public void printSet(){
         for(Edge edj:edgeSet){
             System.out.println();

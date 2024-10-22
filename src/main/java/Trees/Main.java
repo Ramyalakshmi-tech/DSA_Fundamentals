@@ -1,6 +1,4 @@
-package org.example;
-import java.util.ArrayList;
-import java.util.Collections;
+package Trees;
 
 class   BinaryTreeNode {
     int data;

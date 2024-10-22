@@ -1,4 +1,4 @@
-package org.example;
+package Trees;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
