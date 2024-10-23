@@ -1,5 +1,3 @@
-package org.example;
-
 class Solution {
     public static int[] search(int[] nums, int index,int number) {
         int i=0;

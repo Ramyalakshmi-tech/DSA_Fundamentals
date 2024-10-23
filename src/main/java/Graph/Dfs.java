@@ -1,4 +1,4 @@
-package org.example.Graph;
+package Graph;
 
 
 import java.util.*;
@@ -28,32 +28,27 @@ public class Dfs {
 
     // Function to add an edge to the adjacency list
     public static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) {
+
         adj.get(u).add(v);
         adj.get(v).add(u); // For an undirected graph, add both u -> v and v -> u
     }
 
     public static void DfsOfGraph(int vertices,ArrayList<ArrayList<Integer>> adj){
         boolean[] visited=new boolean[vertices];
-        Queue<Integer> queue=new LinkedList<>();
-        queue.add(0);
         visited[0]=true;
-        Helper(queue,vertices,adj,visited);
-
+        System.out.println("0"+" ");
+        Helper(vertices,adj,visited,0);
     }
-
-    public static void Helper(Queue<Integer> queue,int vertices,ArrayList<ArrayList<Integer>> adj,boolean[] visited){
-        while(!queue.isEmpty()){
-            int k=queue.poll();
-            System.out.println(k+" ");
+    public static void Helper(int vertices,ArrayList<ArrayList<Integer>> adj,boolean[] visited,int k){
             ArrayList<Integer> list=adj.get(k);
             for(int i=0;i<list.size();i++){
                 int val=list.get(i);
-                if(visited[val]==false){
-                    queue.add(val);
+                if(!visited[val]){
                     visited[val]=true;
-                    Helper(queue,vertices,adj,visited);
+                    System.out.println(val+" ");
+                    Helper(vertices,adj,visited,val);
                 }
             }
         }
     }
-}
+

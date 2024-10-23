@@ -1,4 +1,4 @@
-package org.example;
+
 
 class MaxHeap {
     int[] heap;
@@ -33,7 +33,7 @@ class MaxHeap {
         heapifyUp(size-1);
     }
     public void heapifyUp(int pos){
-        int current=pos;
+        int current=pos;//150
         while(current>0 && heap[current]>heap[parent(current)] ){
             swap(current,parent(current));
             current=parent(current);
