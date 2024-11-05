@@ -11,8 +11,9 @@
  *         this.left = left;
  *         this.right = right;
  *     }
- * }
- */
+ *
+ *
+ //  nodeList.sort(Comparator.comparingInt(node -> node.val));
 class Solution {
     public TreeNode replaceValueInTree(TreeNode root) {
         TreeNode parent=root;
@@ -120,4 +121,4 @@ class Solution {
         if(root.right!=null)
             Helper(root.right,newTree.right,k,levelSum-sum);
     }
-}
+} */
