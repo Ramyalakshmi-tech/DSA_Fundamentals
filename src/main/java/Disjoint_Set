@@ -1,0 +1,46 @@
+class DisjointSet {
+    int[] parent;
+    int[] rank;
+
+    // Constructor: initializes the data structure
+    public DisjointSet(int n) {
+        parent = new int[n];
+        rank = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;  // Initially, each node is its own parent
+            rank[i] = 0;    // Rank starts at 0
+        }
+    }
+
+    // FIND operation with path compression
+    public int find(int x) {
+        if (parent[x] != x) {
+            parent[x] = find(parent[x]);  // Path compression
+        }
+        return parent[x];
+    }
+
+    // UNION operation by rank
+    public void union(int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+
+        if (rootX == rootY) return;  // Already in the same set
+
+        // Attach smaller rank tree under root of higher rank tree
+        if (rank[rootX] < rank[rootY]) {
+            parent[rootX] = rootY;
+        } else if (rank[rootX] > rank[rootY]) {
+            parent[rootY] = rootX;
+        } else {
+            parent[rootY] = rootX;
+            rank[rootX]++;  // Increase rank only when both ranks are equal
+        }
+    }
+
+    // Check if two elements are in the same set
+    public boolean isConnected(int x, int y) {
+        return find(x) == find(y);
+    }
+}
